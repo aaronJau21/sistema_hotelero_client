@@ -1,0 +1,11 @@
+/* SpecialOffers.module.css */
+.swiper1 .swiper-button-next,
+.swiper1 .swiper-button-prev {
+  color: red !important;
+  background-color: white !important;
+  border-radius: 50%;
+  padding: 10px !important;
+  width: 40px !important;
+  height: 40px !important;
+  opacity: 1 !important; /* Evita que se oculten */
+}
