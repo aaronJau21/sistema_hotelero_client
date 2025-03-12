@@ -5,42 +5,42 @@ const RouteOfFlavors = () => {
       name: "Fiola Trattoria",
       description:
         "¡La calidez de Italia a un bocado de distancia! Ubicado en Hotel ESTELAR Calle 100, Calle 100 No. 14-46 Bogotá – Colombia.",
-      image: "fiola-trattoria.jpg",
+      image: "/img/route-of-flavours/HE-Restaunte-Fiola-Trattoria.webp",
     },
     {
       id: 2,
       name: "Gare 93 Restaurante",
       description:
         "New American is the New Black. Ubicado en el Hotel Estelar Parque de la 93, Calle 93 No. 11-19 Bogotá-Colombia.",
-      image: "gare-93.jpg",
+      image: "/img/route-of-flavours/HE-Restaurante-Gare-93-01.webp",
     },
     {
       id: 3,
       name: "Maki Bar",
       description:
         "Influencias orientales creadas para encantar tus sentidos. Ubicado en Estelar La Fontana, Av Calle 127 No. 15a-10 Bogotá-Colombia.",
-      image: "maki-bar.jpg",
+      image: "/img/route-of-flavours/HE-Slider-Restaurantes-Bogota-03.webp",
     },
     {
       id: 4,
       name: "Plaza Café",
       description:
         "El placer de darle pausa al día para disfrutar la magia de una opción ligera. Ubicado en Estelar La Fontana, Av Calle 127 No. 15a-10 Bogotá-Colombia.",
-      image: "plaza-cafe.jpg",
+      image: "/img/route-of-flavours/HE-Restaunte-Plaza-Cafe.webp",
     },
     {
       id: 5,
       name: "Maki Bar",
       description:
         "Influencias orientales creadas para encantar tus sentidos. Ubicado en Estelar La Fontana, Av Calle 127 No. 15a-10 Bogotá-Colombia.",
-      image: "maki-bar.jpg",
+      image: "/img/route-of-flavours/HE-Restaurante-Kuzina-01.webp",
     },
     {
       id: 6,
       name: "Plaza Café",
       description:
         "El placer de darle pausa al día para disfrutar la magia de una opción ligera. Ubicado en Estelar La Fontana, Av Calle 127 No. 15a-10 Bogotá-Colombia.",
-      image: "plaza-cafe.jpg",
+      image: "/img/route-of-flavours/HE-Restaunte-Tonnarello.webp",
     },
   ];
 
