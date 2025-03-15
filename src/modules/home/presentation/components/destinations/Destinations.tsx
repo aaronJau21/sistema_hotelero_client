@@ -36,7 +36,7 @@ const Destinations = () => {
 
               {/* Texto y Botón dentro de la imagen */}
               <div className="absolute inset-0 flex flex-col justify-center items-center bg-opacity-40 rounded-xl gap-3">
-                <p className="text-white text-lg font-semibold">
+                <p className="text-white text-2xl font-semibold">
                   {destination.title}
                 </p>
                 <MainButton>

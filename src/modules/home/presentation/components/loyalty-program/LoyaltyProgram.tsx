@@ -13,9 +13,9 @@ const LoyaltyProgram = () => {
 
         {/* Contenido sobre la imagen */}
         <div className=" absolute inset-0 flex flex-col  justify-center text-white bg-black/50 rounded-2xl p-6 ">
-          <div className="w-full lg:w-1/2">
-            <MainTitle className="text-left">PROGRAMA DE LEALTAD</MainTitle>
-            <div className="flex flex-col  gap-6">
+          <div className="w-full md:w-1/2 mx-auto">
+            <MainTitle className="mb-5">PROGRAMA DE LEALTAD</MainTitle>
+            <div className="flex flex-col gap-6">
               <div className="flex flex-col  gap-4">
                 <p className="text-md">
                   Huésped Siempre Estelar es el programa de lealtad de Hoteles

@@ -11,7 +11,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: #0B2650;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -118,7 +118,19 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+  html, body {
+    @apply h-full w-full;
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-balance;
+  }
+  p {
+    @apply text-pretty;
+  }
+  button {
+    @apply cursor-pointer;
   }
 }

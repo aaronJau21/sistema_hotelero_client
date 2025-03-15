@@ -15,7 +15,7 @@ const FeaturedDestinations = () => {
   return (
     <div className="w-full h-full flex flex-col md:flex-row justify-center items-center bg-gray-200 p-2 gap-4">
       {/* Columna Izquierda */}
-      <div className="w-full md:w-1/2 flex flex-col gap-8">
+      <div className="  w-full md:w-1/2 flex flex-col  justify-center items-center gap-8">
         <MainTitle>
           Destinos Destacados
         </MainTitle>

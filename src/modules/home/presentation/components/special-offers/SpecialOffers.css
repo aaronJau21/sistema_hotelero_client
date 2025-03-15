@@ -1,0 +1,39 @@
+.swiper-button-prev, .swiper-button-next {
+  background-color: rgba(200, 200, 200, 0.7); /* Gris claro */
+  color: #0E3064; /* Color de la flecha */
+  border-radius: 50%; /* Hace el fondo circular */
+  width: 40px; /* Tamaño del botón */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de elevación */
+  cursor: pointer; /* Cambio de cursor */
+}
+
+/* Efecto de hover para mejorar la sensación de botón */
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  background-color: rgba(162, 162, 162, 0.9); /* Oscurecer en hover */
+  color: #0E3064; /* Cambiar color de flecha */
+  transform: scale(1.1); /* Efecto de crecimiento */
+}
+
+/* Ajustar el tamaño y color de las flechas */
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-size: 20px; /* Tamaño de la flecha */
+  color: #0E3064; /* Color de la flecha */
+}
+
+/* Personalizar los bullets de la paginación */
+.swiper-pagination-bullet {
+  background-color: #0B2650;
+
+  transition: transform 0.2s;
+}
+
+/* Agrandar bullets activos */
+.swiper-pagination-bullet-active {
+  transform: scale(1.2);
+  background-color: #0E3064; /* Verde más llamativo */
+}

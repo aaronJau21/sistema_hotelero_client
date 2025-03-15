@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { menuItems } from "./MenuItem";
+import { menuItems } from "../data/MenuItem";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 const DesktopMenu = () => {
   const [openSubmenu, setOpenSubmenu] = useState(null); // Países
@@ -9,14 +10,14 @@ const DesktopMenu = () => {
   const navigate = useNavigate();
 
   return (
-    <ul className="hidden md:flex ml-auto space-x-6 relative">
+    <ul className="hidden lg:flex gap-6 relative">
       {menuItems.map((item, index) => (
         <li
           key={index}
           className="relative"
           onMouseEnter={() => {
             setOpenSubmenu(index);
-            setOpenCityMenu(null); // Cierra submenús anteriores
+            setOpenCityMenu(null);
             setOpenHotelMenu(null);
           }}
           onMouseLeave={() => {
@@ -30,7 +31,10 @@ const DesktopMenu = () => {
             }
           }}
         >
-          <span className="hover:text-gray-300 text-sm cursor-pointer">{item.title}</span>
+          <span className="flex items-end gap-1 hover:text-gray-300 text-xs font-semibold cursor-pointer ">
+            {item.title}
+            {item.subItems.length > 0 && <ChevronDown className="w-4 h-4" />}
+          </span>
 
           {/* Submenú: Países */}
           {item.subItems.length > 0 && openSubmenu === index && (
@@ -38,13 +42,14 @@ const DesktopMenu = () => {
               {item.subItems.map((country, i) => (
                 <div
                   key={i}
-                  className="relative px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="relative px-4 py-2 hover:bg-gray-200 cursor-pointer flex items-center justify-between gap-2 text-xs"
                   onMouseEnter={() => {
                     setOpenCityMenu(i);
-                    setOpenHotelMenu(null); // Evita que los hoteles se abran al mismo tiempo
+                    setOpenHotelMenu(null);
                   }}
                 >
                   {country.title}
+                  {country.cities.length > 0 && <ChevronRight className="w-4 h-4" />}
 
                   {/* Submenú: Ciudades */}
                   {openCityMenu === i && (
@@ -52,11 +57,12 @@ const DesktopMenu = () => {
                       {country.cities.map((city, j) => (
                         <div
                           key={j}
-                          className="relative px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                          className="relative px-4 py-2 hover:bg-gray-200 cursor-pointer flex items-center justify-between gap-2 text-xs"
                           onMouseEnter={() => setOpenHotelMenu(j)}
                           onMouseLeave={() => setOpenHotelMenu(null)}
                         >
                           {city.title}
+                          {city.hotels.length > 0 && <ChevronRight className="w-4 h-4" />}
 
                           {/* Submenú: Hoteles */}
                           {openHotelMenu === j && (
@@ -64,7 +70,7 @@ const DesktopMenu = () => {
                               {city.hotels.map((hotel, k) => (
                                 <div
                                   key={k}
-                                  className="px-4 py-2 hover:bg-gray-300 cursor-pointer"
+                                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-xs"
                                   onClick={() => navigate(hotel.path)}
                                 >
                                   {hotel.title}

@@ -4,29 +4,30 @@ import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
+import { Search } from "lucide-react";
 
 const ReservationForm = () => {
   const [selectedHotel, setSelectedHotel] = useState("");
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
-  const [adults, setAdults] = useState(1);
+  const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [discountCode, setDiscountCode] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+
+  const [isHotelListOpen, setIsHotelListOpen] = useState(false);
+  const [isTravelersPopoverOpen, setIsTravelersPopoverOpen] = useState(false);
 
   const hotels = ["Hotel Estelar Bogotá", "Hotel Estelar Cartagena", "Hotel Estelar Medellín"];
-  const filteredHotels = hotels.filter((hotel) =>
-    hotel.toLowerCase().includes(inputValue.toLowerCase())
-  );
+  const filteredHotels = hotels.filter((hotel) => hotel.toLowerCase().includes(inputValue.toLowerCase()));
 
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Manejo de clics fuera del input y la lista
+  // Manejo de clics fuera del input de hoteles
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        setIsHotelListOpen(false);
       }
     };
 
@@ -37,45 +38,48 @@ const ReservationForm = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex flex-col xl:flex-row gap-4 p-6 rounded-xl shadow-lg bg-white  ">
+    <div className="mx-auto flex flex-col lg:flex-row gap-8 p-6 rounded-xl border border-gray-300 shadow-sm bg-white w-[400px] md:w-[600px] lg:w-auto ">
 
       {/* Selección de Hotel */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative w-full" ref={menuRef}>
-          <label htmlFor="">Selecciona un hotel:</label>
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="relative w-full md:w-1/2 flex flex-col gap-2" ref={menuRef}>
+          <label className="text-sm font-bold">Selecciona un hotel:</label>
           <Input
-            className="text-center"
+            className="text-center  placeholder:text-xs"
+            style={{ fontSize: "0.5rem" }}
             placeholder="Buscar un hotel..."
             value={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
-              setIsOpen(true);
+              setIsHotelListOpen(true);
             }}
-            onFocus={() => setIsOpen(true)}
+            onFocus={() => setIsHotelListOpen(true)}
           />
-          {isOpen && filteredHotels.length > 0 && (
+          {isHotelListOpen && filteredHotels.length > 0 && (
             <div className="absolute w-full bg-white border rounded-md shadow-md mt-1 z-10">
-              {filteredHotels.map((hotel, index) => (
-                <div
-                  key={index}
-                  className="p-2 cursor-pointer hover:bg-gray-200"
-                  onClick={() => {
-                    setSelectedHotel(hotel);
-                    setInputValue(hotel);
-                    setIsOpen(false);
-                  }}
-                >
-                  {hotel}
-                </div>
-              ))}
+              <div className="max-h-50 overflow-y-auto">
+                {filteredHotels.map((hotel, index) => (
+                  <div
+                    key={index}
+                    className="p-2 cursor-pointer hover:bg-gray-200 text-xs"
+                    onClick={() => {
+                      setSelectedHotel(hotel);
+                      setInputValue(hotel);
+                      setIsHotelListOpen(false);
+                    }}
+                  >
+                    {hotel}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
 
         {/* Check-in & Check-out */}
-        <div className="flex flex-col space-x-2">
-          <label htmlFor="">Check In / Check Out:</label>
-          <div className="flex gap-4">
+        <div className="w-full md:w-1/2 flex flex-col gap-2">
+          <label className="text-sm font-bold">Check In / Check Out:</label>
+          <div className="flex justify-center gap-4">
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline">{checkIn ? format(checkIn, "dd/MM/yyyy") : "Check-in"}</Button>
@@ -84,6 +88,7 @@ const ReservationForm = () => {
                 <Calendar mode="single" selected={checkIn} onSelect={setCheckIn} />
               </PopoverContent>
             </Popover>
+
             <Popover>
               <PopoverTrigger asChild>
                 <Button variant="outline">{checkOut ? format(checkOut, "dd/MM/yyyy") : "Check-out"}</Button>
@@ -96,37 +101,74 @@ const ReservationForm = () => {
         </div>
       </div>
 
-
       {/* Viajeros */}
-      <div className="flex flex-col gap-4 md:flex-row">
-        <div className="flex flex-col">
-          <label htmlFor="">Viajeros:</label>
-          <div className="flex gap-2  items-center">
-            <span>Adultos</span>
-            <Button variant="outline" onClick={() => setAdults(Math.max(1, adults - 1))}>-</Button>
-            <span>{adults}</span>
-            <Button variant="outline" onClick={() => setAdults(adults + 1)}>+</Button>
-            <span>Niños</span>
-            <Button variant="outline" onClick={() => setChildren(Math.max(0, children - 1))}>-</Button>
-            <span>{children}</span>
-            <Button variant="outline" onClick={() => setChildren(children + 1)}>+</Button>
-          </div>
+      <div className="flex flex-col gap-6 md:flex-row">
+        <div className="w-full md:w-1/2 flex flex-col gap-2">
+          <label className="text-sm font-bold">Viajeros:</label>
+          <Popover open={isTravelersPopoverOpen} onOpenChange={setIsTravelersPopoverOpen}>
+            <PopoverTrigger asChild>
+              <Input
+                readOnly
+                className="cursor-pointer text-center w-full"
+                value={`Adultos: ${adults}, Niños: ${children}`}
+                onClick={() => setIsTravelersPopoverOpen(true)}
+              />
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-4">
+              <div className="flex flex-col gap-4">
+                {/* Adultos */}
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm">Adultos</span>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" onClick={() => setAdults(Math.max(0, adults - 1))}>
+                      -
+                    </Button>
+                    <span className="text-sm">{adults}</span>
+                    <Button variant="outline" size="sm" onClick={() => setAdults(adults + 1)}>
+                      +
+                    </Button>
+                  </div>
+                </div>
+                {/* Niños */}
+                <div className="flex justify-between items-center">
+                  <span className="text-sm">Niños</span>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" onClick={() => setChildren(Math.max(0, children - 1))}>
+                      -
+                    </Button>
+                    <span className="text-sm">{children}</span>
+                    <Button variant="outline" size="sm" onClick={() => setChildren(children + 1)}>
+                      +
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+
+          </Popover>
         </div>
 
         {/* Código de Descuento */}
-        <div>
-          <label htmlFor="">Código de descuento:</label>
-          <Input className="text-center" placeholder="Ingresa tu código" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} />
+        <div className="w-full md:w-1/2 flex flex-col gap-2">
+          <label className="text-sm font-bold">Código de descuento:</label>
+          <Input
+            className="text-center placeholder:text-xs"
+            placeholder="Ingresa tu código"
+            value={discountCode}
+            onChange={(e) => setDiscountCode(e.target.value)}
+          />
         </div>
       </div>
 
       {/* Botón de Buscar */}
-      <div className="w-full flex xl:w-[100px]">
-        <Button className="w-full" onClick={() => console.log({ selectedHotel, checkIn, checkOut, adults, children, discountCode })}>
-          Buscar
+      <div className="w-full lg:w-[100px]">
+        <Button
+          className="w-full h-full p-4 md:p-6 flex-grow transition-all duration-200 hover:scale-102 active:scale-98"
+          onClick={() => console.log({ selectedHotel, checkIn, checkOut, adults, children, discountCode })}
+        >
+          <Search className="w-5 h-5" />
         </Button>
       </div>
-
     </div>
   );
 };

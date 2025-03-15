@@ -5,6 +5,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import MainTitle from "../../../../../shared/components/title/MainTitle";
 import MainButton from "../../../../../shared/components/buttons/MainButton";
+import { Button } from "@/components/ui/button";
+import "./SpecialOffers.css"; 
 
 const offers = [
   { id: 1, image: "banners-web-Compensar.jpg", title: "Descuento exclusivo" },
@@ -61,14 +63,18 @@ const SpecialOffers = () => {
                 alt={offer.title}
                 className="w-full h-64 object-cover rounded-2xl"
               />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black/50 rounded-2xl">
-                <h2 className="text-lg font-bold">{offer.title}</h2>
-                <button className="mt-2 px-4 py-2 bg-[#181A1B] hover:bg-blue-600 rounded-lg text-[#96C4F0]">
-                  Ver más
-                </button>
+              <div className="bg-black/20 absolute inset-0 rounded-2xl">
+                <div className="absolute inset-x-0 top-[60%] flex flex-col items-center justify-center text-white rounded-2xl">
+                  <h2 className="text-2xl font-bold">{offer.title}</h2>
+                  <Button className="mt-2 px-6 py-5 bg-white hover:bg-blue-600 rounded-lg text-black text-md font-semibold">
+                    Ver más
+                  </Button>
+                </div>
               </div>
+
             </SwiperSlide>
           ))}
+
         </Swiper>
       </div>
 
