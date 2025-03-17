@@ -19,6 +19,7 @@ const ReservationForm = () => {
   const [isTravelersPopoverOpen, setIsTravelersPopoverOpen] = useState(false);
 
   const hotels = ["Hotel Estelar Bogotá", "Hotel Estelar Cartagena", "Hotel Estelar Medellín"];
+
   const filteredHotels = hotels.filter((hotel) => hotel.toLowerCase().includes(inputValue.toLowerCase()));
 
   const menuRef = useRef<HTMLDivElement>(null);
@@ -46,7 +47,7 @@ const ReservationForm = () => {
           <label className="text-sm font-bold">Selecciona un hotel:</label>
           <Input
             className="text-center  placeholder:text-xs"
-            style={{ fontSize: "0.5rem" }}
+            style={{ fontSize: "0.75rem" }}
             placeholder="Buscar un hotel..."
             value={inputValue}
             onChange={(e) => {
@@ -56,7 +57,7 @@ const ReservationForm = () => {
             onFocus={() => setIsHotelListOpen(true)}
           />
           {isHotelListOpen && filteredHotels.length > 0 && (
-            <div className="absolute w-full bg-white border rounded-md shadow-md mt-1 z-10">
+            <div className="absolute top-full left-0 w-full bg-white border rounded-md shadow-md mt-1 z-30">
               <div className="max-h-50 overflow-y-auto">
                 {filteredHotels.map((hotel, index) => (
                   <div

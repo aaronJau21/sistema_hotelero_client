@@ -11,7 +11,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #0B2650;
+  --primary: #0E3064;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -133,4 +133,26 @@
   button {
     @apply cursor-pointer;
   }
+}
+
+
+@media (min-width: 480px) {
+  .grid-xs-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-fast {
+  animation: floating 4s infinite ease-in-out;
+}
+
+.floating-slow {
+  animation: floating 6s infinite ease-in-out;
 }

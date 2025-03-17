@@ -3,17 +3,16 @@ import MainTitle from "../../../../../shared/components/title/MainTitle";
 
 const LearnMore = () => {
   return (
-    <div className="w-full bg-gray-200 flex flex-col lg:flex-row">
-
+    <div className="w-full bg-gray-200 flex flex-col lg:flex-row p-4">
       <div className="lg:w-1/2 flex flex-col justify-center items-center p-4">
-        <div>
+        <div className="mb-5">
           <MainTitle>Hoteles Estelar, el placer de descubrir Colombia y Perú</MainTitle>
         </div>
         <div className="p-2 text-center lg:text-left">
           En Hoteles Estelar contamos con más de 50 años de experiencia en la industria hotelera, siempre comprometidos con la excelencia y con un equipo que trabaja bajo los más altos estándares de servicio. Nuestra promesa de valor, «El Placer de Descubrir», refleja el enfoque en brindar una hospitalidad auténtica y 100% colombiana.
         </div>
         <div>
-          <MainButton>Conoce Más →</MainButton>
+          <MainButton>CONOCE MÁS →</MainButton>
         </div>
       </div>
 

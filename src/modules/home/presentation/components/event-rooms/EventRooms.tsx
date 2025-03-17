@@ -3,6 +3,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./EventRooms.css"
+import MainTitle from "@/shared/components/title/MainTitle";
 
 const EventRooms = () => {
   const eventRooms = [
@@ -51,11 +52,11 @@ const EventRooms = () => {
   ];
 
   return (
-    <div className="h-full bg-white py-12">
+    <div className="h-full bg-white p-4">
       {/* 🏷️ Título Principal */}
-      <h1 className="text-center text-4xl font-bold text-gray-700 mb-4">
+      <MainTitle className="text-center text-4xl font-bold text-gray-700 mb-4">
         Nuestros salones para eventos
-      </h1>
+      </MainTitle>
 
       {/* 📜 Descripción */}
       <p className="text-center text-gray-600 max-w-xl mx-auto mb-8">
@@ -80,8 +81,8 @@ const EventRooms = () => {
           className="relative w-full max-w-5xl mx-auto"
         >
           {eventRooms.map((room) => (
-            <SwiperSlide key={room.id} className="flex flex-col items-center  shadow-lg rounded-xl overflow-hidden">
-              <img src={room.image} alt={room.name} className="w-full h-64 object-cover" />
+            <SwiperSlide key={room.id} className="flex flex-col items-center shadow-lg rounded-xl overflow-hidden">
+              <img src={room.image} alt={room.name} className="w-full h-[160px] object-cover" />
               <div className="text-center p-3">
                 <h2 className="text-xl font-semibold text-gray-800">{room.name}</h2>
                 <p className="text-gray-600 text-sm mt-1">{room.description}</p>

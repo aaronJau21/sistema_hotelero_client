@@ -1,3 +1,5 @@
+import MainTitle from "@/shared/components/title/MainTitle";
+
 const RouteOfFlavors = () => {
   const restaurants = [
     {
@@ -47,28 +49,30 @@ const RouteOfFlavors = () => {
   return (
     <div className="h-full bg-gray-200 py-12">
       {/* 🏷️ Título Principal */}
-      <h1 className="text-center text-4xl font-bold text-gray-700 mb-8">
+      <MainTitle className="text-center text-4xl font-bold text-gray-700 mb-8">
         LA RUTA DE LOS SABORES
-      </h1>
+      </MainTitle>
 
       {/* 📌 Grid de Restaurantes */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 ">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.id} className="flex flex-col items-center">
+          <div key={restaurant.id} className="flex flex-col items-center shadow-lg rounded-xl  overflow-hidden bg-white">
             {/* 📸 Imagen */}
             <img
               src={restaurant.image}
               alt={restaurant.name}
-              className="w-64 h-48 object-cover rounded-xl shadow-lg"
+              className="w-full h-[100px] object-cover"
             />
-            {/* 🏷️ Nombre */}
-            <h2 className="mt-4 text-xl font-semibold text-gray-800 text-center">
-              {restaurant.name}
-            </h2>
-            {/* 📄 Descripción */}
-            <p className="text-gray-600 text-center text-sm px-4 mt-2">
-              {restaurant.description}
-            </p>
+            <div className="text-center p-3">
+              {/* 🏷️ Nombre */}
+              <h2 className="mt-1 text-xl text-gray-800 text-center text-primary">
+                {restaurant.name}
+              </h2>
+              {/* 📄 Descripción */}
+              <p className="text-gray-600 text-center text-sm px-4 mt-2">
+                {restaurant.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
